@@ -5,10 +5,56 @@ import (
 )
 
 func main() {
-	fmt.Println("hello linked list")
+	fmt.Println("Random Linked list stuff")
 
 	list := LinkedList{}
 	list.Add(1)
+	list.Add(2)
+	list.Add(4)
+	list.Add(10)
+	list.Add(100)
+	list.Add(5)
+	list.Add(4)
+	list.Add(45)
 
-	fmt.Printf("%v", list)
+	//Just print the contents of the list
+	printList(&list)
+
+	//remove dups and print again
+
+	fmt.Println("Removing Dups")
+	removeDups(&list)
+	printList(&list)
+}
+
+func printList(list *LinkedList) {
+
+	node := list.head
+	for node != nil {
+		fmt.Println(node.data)
+		node = node.next
+	}
+}
+
+func removeDups(list *LinkedList) {
+	//O(n) time complexity
+	dic := make(map[int]*Node)
+
+	node := list.head
+	var previousNode *Node
+
+	for node != nil {
+		_, contains := dic[node.data]
+
+		if contains {
+			//remove
+			previousNode.next = node.next
+			node = previousNode.next
+		} else {
+			dic[node.data] = node
+			previousNode = node
+			node = node.next
+		}
+	}
+
 }

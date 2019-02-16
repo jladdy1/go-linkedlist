@@ -2,6 +2,7 @@ package main
 
 //Node of a linked list
 type Node struct {
+	//This is an example of where generics would be nice in Go.
 	next *Node
 	data int
 }
