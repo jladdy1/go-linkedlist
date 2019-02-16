@@ -23,7 +23,7 @@ func main() {
 	//remove dups and print again
 
 	fmt.Println("Removing Dups")
-	removeDups(&list)
+	removeDups2(&list)
 	printList(&list)
 }
 
@@ -55,6 +55,26 @@ func removeDups(list *LinkedList) {
 			previousNode = node
 			node = node.next
 		}
+	}
+
+}
+
+func removeDups2(list *LinkedList) {
+	// O(n^2) time complexity.  O(1) space complexity
+	node := list.head
+
+	for node != nil {
+		runner := node
+
+		for runner.next != nil {
+			if runner.next.data == node.data {
+				//dup
+				runner.next = runner.next.next
+			} else {
+				runner = runner.next
+			}
+		}
+		node = node.next
 	}
 
 }
