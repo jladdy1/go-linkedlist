@@ -20,11 +20,18 @@ func main() {
 	//Just print the contents of the list
 	printList(&list)
 
+	kth, node := list.getKtolast(1)
+
+	fmt.Printf("The kth from the last element is index %v and value %v", kth, node.data)
+
+	printKtoLast(list.head, 2)
+
 	//remove dups and print again
 
 	fmt.Println("Removing Dups")
 	removeDups2(&list)
 	printList(&list)
+
 }
 
 func printList(list *LinkedList) {
@@ -77,4 +84,19 @@ func removeDups2(list *LinkedList) {
 		node = node.next
 	}
 
+}
+
+func printKtoLast(head *Node, k int) int {
+
+	if head == nil {
+		return 0
+	}
+
+	index := printKtoLast(head.next, k) + 1
+
+	if index == k {
+		fmt.Printf("%v th to last is %v", k, head.data)
+	}
+
+	return index
 }

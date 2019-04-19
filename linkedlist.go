@@ -27,3 +27,22 @@ func (ll *LinkedList) Add(d int) {
 	}
 	ll.length++
 }
+
+//Iterative solution
+func (ll *LinkedList) getKtolast(k int) (int, *Node) {
+
+	first, second := ll.head, ll.head
+	for i := 0; i < k+1; i++ {
+		second = second.next
+		if second == nil {
+			return 0, nil
+		}
+	}
+	index := 1
+	for second != nil {
+		first = first.next
+		second = second.next
+		index++
+	}
+	return index, first
+}
